@@ -1,5 +1,8 @@
 from django.contrib import admin
-from watchlist_app.models import Movie
+from .models import *
 
 # Register your models here.
-admin.site.register(Movie)
+
+@admin.register(Movie)
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ['name', 'description','active']

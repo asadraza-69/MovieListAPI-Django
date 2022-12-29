@@ -1,0 +1,20 @@
+[
+{
+    "model": "watchlist_app.movie", 
+    "pk": 1, 
+    "fields": {
+        "name": "BitsWits vs bakchodiya", 
+        "description": "larai larai", 
+        "active": true
+        }
+}, 
+{
+    "model": "watchlist_app.movie", 
+    "pk": 2, 
+    "fields": {
+        "name": "javascript the fade of career", 
+        "description": "js-js-js-js", 
+        "active": true
+        }
+}
+]
