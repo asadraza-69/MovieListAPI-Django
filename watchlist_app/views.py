@@ -1,11 +1,47 @@
 from django.shortcuts import render
-from watchlist_app.models import Movie
+from watchlist_app.models import *
 from django.http import JsonResponse
-from .serializers import MovieSerializers
+from .serializers import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.views import APIView
+
+
+class PlatformApiView(APIView):
+    def get(self,request):
+        steamplatform = Steamplatform.objects.all()
+        serializers = steamplatformSerializers(steamplatform,many=True)
+        return Response(serializers.data,status=status.HTTP_201_CREATED)
+    def post(self,request):
+        serializers = steamplatformSerializers(data = request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data,status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializers.errors,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class PlatformDetailApiView(APIView):
+    def get(self,request,pk):
+        try:
+            steamplatform = Steamplatform.objects.get(pk=pk)
+            serializers = steamplatformSerializers(steamplatform)
+            return Response(serializers.data,status=status.HTTP_200_OK)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    def put(self,request,pk):
+        steamplatform = Steamplatform.objects.get(pk=pk)
+        serializers = steamplatformSerializers(steamplatform,data = request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data,status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response(serializers.errors,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    def delete(self,request,pk):
+        steamplatform = Steamplatform.objects.get(pk=pk)
+        steamplatform.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class MovielistApiView(APIView):
     def get(self,request):

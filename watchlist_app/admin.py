@@ -7,3 +7,8 @@ from .models import *
 class MovieAdmin(admin.ModelAdmin):
     list_display = ['id','name', 'description','active']
     ordering = ['id']
+
+@admin.register(Steamplatform)
+class steamplatformAdmin(admin.ModelAdmin):
+    list_display = ['id','Plateform', 'about','website']
+    ordering = ['id']

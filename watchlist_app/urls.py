@@ -9,4 +9,6 @@ urlpatterns = [
     path('func-serializer/<int:pk>', serial_movie_details, name='serial_movie_details'),
     path('serializer/', MovielistApiView.as_view(), name='MovielistApiView'),
     path('serializer/<int:pk>', MovieDetailApiView.as_view(), name='MovieDetailApiView'),
+    path('platform/', PlatformApiView.as_view(), name='MovielistApiView'),
+    path('platform/<int:pk>', PlatformDetailApiView.as_view(), name='MovieDetailApiView'),
 ]
