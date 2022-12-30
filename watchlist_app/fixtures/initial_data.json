@@ -16,5 +16,38 @@
         "description": "js-js-js-js", 
         "active": true
         }
+}, 
+{
+    "model": "watchlist_app.movie", 
+    "pk": 3, 
+    "fields": {
+        "name": "the fade of ilsa", 
+        "description": "bio graphy", 
+        "active": true
+        }
+},
+{
+    "model": "watchlist_app.movie",
+    "pk": 4,
+    "fields": {
+        "name": "Taxi_driver", 
+        "description": "Martin", 
+        "active": true}
+}, 
+{   
+    "model": "watchlist_app.movie", 
+    "pk": 5, 
+    "fields": {
+        "name": "BitsWits vs bakchodiya", 
+        "description": "Crystal_legue", 
+        "active": true}}, 
+{   
+    "model": "watchlist_app.movie", 
+    "pk": 6, 
+    "fields": {
+        "name": "BitsWits vs bakchodiya", 
+        "description": "larai larai", 
+        "active": true
+        }
 }
 ]

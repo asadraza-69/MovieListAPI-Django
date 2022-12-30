@@ -5,4 +5,5 @@ from .models import *
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description','active']
+    list_display = ['id','name', 'description','active']
+    ordering = ['id']
