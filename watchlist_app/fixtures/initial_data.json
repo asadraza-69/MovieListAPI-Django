@@ -3,7 +3,7 @@
         "model": "watchlist_app.movie", 
         "pk": 1, 
         "fields": {
-            "name": "Superstar: The Life and Times of Andy Warhol (1990", 
+            "name": "Superstar:The Life and Times of Andy Warhol (1990)", 
             "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.", 
             "active": true
             }
