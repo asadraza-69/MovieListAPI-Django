@@ -3,6 +3,10 @@ from .models import *
 
 
 class MovieSerializers(serializers.Serializer):
-    class Meta:
-        model = Movie
-        fields = '__all__'
+    name = serializers.CharField(max_length=50) 
+    description = serializers.CharField(max_length=200)
+    active = serializers.BooleanField(default=True)
+    
+    # class Meta:
+    #     model = Movie
+    #     fields = ('id', 'name', 'description' ,'active')
