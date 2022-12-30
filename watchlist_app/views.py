@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 class PlatformApiView(APIView):
     def get(self,request):
         steamplatform = Steamplatform.objects.all()
-        serializers = steamplatformSerializers(steamplatform,many=True)
+        serializers = steamplatformSerializers(steamplatform,many=True,context={'request': request})
         return Response(serializers.data,status=status.HTTP_201_CREATED)
     def post(self,request):
         serializers = steamplatformSerializers(data = request.data)

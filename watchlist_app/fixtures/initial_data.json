@@ -5,6 +5,7 @@
         "fields": {
             "name": "Superstar:The Life and Times of Andy Warhol (1990)", 
             "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.", 
+            "plateform": 1,
             "active": true
             }
     }, 
@@ -13,7 +14,8 @@
         "pk": 2, 
         "fields": {
             "name": "Maniac Cop 2 (1990)", 
-            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.", 
+            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.",
+            "plateform": 1, 
             "active": true
             }
     },
@@ -22,7 +24,8 @@
         "pk": 3, 
         "fields": {
             "name": "The Rookie (1990)", 
-            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.", 
+            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.",
+            "plateform": 2, 
             "active": true
             }
     },
@@ -31,7 +34,8 @@
         "pk": 4, 
         "fields": {
             "name": "Flashback (1990)", 
-            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.", 
+            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.",
+            "plateform": 1, 
             "active": true
             }
     },
@@ -40,7 +44,8 @@
         "pk": 5, 
         "fields": {
             "name": "Teenage Mutant Ninja Turtles (1990)", 
-            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.", 
+            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.",
+            "plateform": 2, 
             "active": true
             }
     },
@@ -49,7 +54,8 @@
         "pk": 6, 
         "fields": {
             "name": "Kindergarten Cop (1990)", 
-            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.", 
+            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.",
+            "plateform": 2, 
             "active": true
             }
     },
@@ -58,8 +64,27 @@
         "pk": 7, 
         "fields": {
             "name": "Bird on a Wire (1990)", 
-            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.", 
+            "description": "Martin Scorsese finally won his first directing Oscar for the crime epic The Departed.",
+            "plateform": 2, 
             "active": true
             }
+    },
+    {
+        "model": "watchlist_app.steamplatform", 
+        "pk": 1, 
+        "fields": {
+            "Plateform": "Netflix", 
+            "about": "Netflix and chill", 
+            "website": "http://www.netflix.com"
+        }
+    },
+    {
+        "model": "watchlist_app.steamplatform", 
+        "pk": 2, 
+        "fields": {
+            "Plateform": "Prime", 
+            "about": "Prime videos", 
+            "website": "http://www.Prime.com"
+        }
     }
 ]
