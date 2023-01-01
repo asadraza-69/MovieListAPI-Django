@@ -2,10 +2,20 @@ from rest_framework import serializers
 from .models import *
 from datetime import datetime
 
+
+class ReviewSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        # fields = '__all__' => for all fields in MovieModel
+        # fields = ['name', 'description' ,'active'] => for selected fields in MovieModel
+        exclude = ['id']
+
+
 class MovieSerializers(serializers.ModelSerializer):
     
     len_name_movie = serializers.SerializerMethodField()
     current_datetime = serializers.SerializerMethodField()
+    review_movie =  ReviewSerializers(many = True, read_only = True)
     # this is used to add field to model through serializer
     
     class Meta:

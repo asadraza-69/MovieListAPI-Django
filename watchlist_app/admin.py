@@ -12,3 +12,8 @@ class MovieAdmin(admin.ModelAdmin):
 class steamplatformAdmin(admin.ModelAdmin):
     list_display = ['id','Plateform', 'about','website']
     ordering = ['id']
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['movie', 'rating','description']
+    ordering = ['id']

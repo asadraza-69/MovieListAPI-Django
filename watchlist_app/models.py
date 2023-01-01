@@ -1,6 +1,8 @@
 from django.db import models
-
+from django.core.validators import MinValueValidator , MaxValueValidator
 # Create your models here.
+
+
 class Steamplatform(models.Model):
     Plateform = models.CharField(verbose_name="Plateform", max_length=50, null= True ,blank= True)
     about = models.CharField(verbose_name="about",max_length=200, null= True ,blank= True)
@@ -29,4 +31,14 @@ class Movie(models.Model):
 
     class Meta:
         db_table = u'movie'
-    
+
+class Review(models.Model):
+    rating = models.PositiveIntegerField(verbose_name="rating",validators = [MinValueValidator(1),MaxValueValidator(5)])
+    description = models.CharField(verbose_name="description",max_length=100, null= True ,blank= True)
+    movie = models.ForeignKey(Movie,on_delete = models.CASCADE,verbose_name = "movie", null= True, blank= True, related_name= "review_movie")    
+    active = models.BooleanField(verbose_name="active",default=True, null= True ,blank= True)
+    created = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return str(self.rating)
+    class Meta:
+        db_table = u'review'

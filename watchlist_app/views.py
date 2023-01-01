@@ -2,10 +2,70 @@ from django.shortcuts import render
 from watchlist_app.models import *
 from django.http import JsonResponse
 from .serializers import *
+
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework import mixins
+from rest_framework import generics
+
+# Create your views here.
+class ReviewApiView2(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
+                  generics.GenericAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializers
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+class ReviewApiView(generics.ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializers
+
+class ReviewDetailApiView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializers
+
+
+class ReviewApiView1(APIView):
+    def get(self,request):
+        review = Review.objects.all()
+        serializers = ReviewSerializers(review,many=True,context={'request': request})
+        return Response(serializers.data,status=status.HTTP_201_CREATED)
+    def post(self,request):
+        serializers = ReviewSerializers(data = request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data,status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializers.errors,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class ReviewDetailApiView1(APIView):
+    def get(self,request,pk):
+        try:
+            steamplatform = Review.objects.get(pk=pk)
+            serializers = ReviewSerializers(steamplatform)
+            return Response(serializers.data,status=status.HTTP_200_OK)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    def put(self,request,pk):
+        steamplatform = Review.objects.get(pk=pk)
+        serializers = ReviewSerializers(steamplatform,data = request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data,status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response(serializers.errors,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    def delete(self,request,pk):
+        steamplatform = Review.objects.get(pk=pk)
+        steamplatform.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 
 class PlatformApiView(APIView):
