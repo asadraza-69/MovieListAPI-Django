@@ -11,6 +11,29 @@ from rest_framework import mixins
 from rest_framework import generics
 
 # Create your views here.
+class movie_review_id(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializers
+
+
+class movie_id_review(generics.CreateAPIView):
+    # queryset = Review.objects.all()
+    serializer_class = ReviewSerializers
+
+    def perform_create(self, serializer):
+        pk = self.kwargs['pk']
+        Movie = Movie.objects.filter(movie = pk)
+        serializer.save(movie = Movie)
+
+class movie_id_review(generics.ListCreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializers
+
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        return Review.objects.filter(movie = pk)
+        # return super().get_queryset()
+
 class ReviewApiView2(mixins.ListModelMixin,
                   mixins.CreateModelMixin,
                   generics.GenericAPIView):
@@ -22,6 +45,8 @@ class ReviewApiView2(mixins.ListModelMixin,
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+
 class ReviewApiView(generics.ListCreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializers
@@ -43,6 +68,8 @@ class ReviewApiView1(APIView):
             return Response(serializers.data,status=status.HTTP_201_CREATED)
         else:
             return Response(serializers.errors,status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    def delete(self,request):
+        serializers = ReviewSerializers(data = request.data)
 
 class ReviewDetailApiView1(APIView):
     def get(self,request,pk):

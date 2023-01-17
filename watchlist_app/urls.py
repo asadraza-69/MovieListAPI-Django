@@ -17,4 +17,6 @@ urlpatterns = [
     path('reviews1/<int:pk>', ReviewDetailApiView1.as_view(), name='MovieDetailApiView1'),
     path('reviews2/', ReviewApiView2.as_view(), name='ReviewApiView2'),
     # path('reviews/<int:pk>', ReviewDetailApiView.as_view(), name='MovieDetailApiView'),
+    path('movies/review/<int:pk>', movie_review_id.as_view(), name='movie_review_id'),
+    path('movies/<int:pk>/review/', movie_id_review.as_view(), name='movie_id_review'),
 ]
